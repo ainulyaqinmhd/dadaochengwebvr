@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <!-- <script src="assets/js/aframe-master.js"></script> -->
+    <script>
+    AFRAME.registerComponent('play-pause', {
+        init: function () {
+            var myVideo = document.querySelector('#temple');
+            var videoControls = document.querySelector('#videoControls');
+            this.ele.addEventListener('click', function () {
+                if (myVideo.paused) {
+                    myVideo.play();
+                    videoControls.setAttribute('src', '#pause');
+                     } else {
+                         myVideo.pause();
+                         videoControls.setAttribute('src', '#play');
+                     }
+
+            });
+        }
+    });
+    </script>
+    <script>
+        document.getElementById("#button").setAttribute("data-clickable", "");
+      </script>
+    <title>Temple</title>
+</head>
+<body>
+    <a-scene>
+        <a-assets>
+            <img id="play" src="pic/play.png">
+            <img id="pause" src="pic/pause.png">
+            <video id="temple" src="./video/event01_1.mp4" autoplay loop="true"></video>
+        </a-assets>
+        
+        <a-camera>
+            <a-cursor></a-cursor>
+        </a-camera>
+        
+        <!-- <a-videosphere src=""></a-videosphere> -->
+        <a-videosphere src="#temple"></a-videosphere>
+        
+        <a-image id="videoControls" src="#play" position="0 0 0" scale="0.2 0.2 0.2"></a-image>
+        
+
+        
+           <a-camera>
+        <a-cursor id="curseid" raycaster="objects: [data-clickable]"></a-cursor>
+      </a-camera>
+
+    </a-scene>
+</body>
+</html>
